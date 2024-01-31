@@ -14,7 +14,7 @@ private:
 
     Node* head;
     int length;
-
+    
 public:
     mypriorityqueue() : head(nullptr), length(0) {}
 
@@ -50,7 +50,9 @@ public:
             Node* temp = head;
             head = head->next;
             length--;
-            return temp->data;
+            T value = temp->data;
+            delete temp;
+            return value;
         }
 
     }
