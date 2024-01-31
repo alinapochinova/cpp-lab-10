@@ -9,6 +9,7 @@ private:
         Node* next;
 
         Node(const T& item, int p) : data(item), priority(p), next(nullptr) {}
+        
     };
 
     Node* head;
@@ -24,7 +25,7 @@ public:
             delete temp;
         }
     }
-
+  
     void push(const T& item, int priority) {
         Node* newNode = new Node(item, priority);
 
@@ -44,13 +45,14 @@ public:
         length++;
     }
 
-    void pop() {
+    T pop() {
         if (head != nullptr) {
             Node* temp = head;
             head = head->next;
-            delete temp;
             length--;
+            return temp->data;
         }
+
     }
 
     const T& peek() const {
@@ -63,7 +65,7 @@ public:
     int size() const {
         return length;
     }
-    template<typename T>
+    
     friend std::ostream& operator<<(std::ostream& os, const mypriorityqueue<T>& queue) {
         typename mypriorityqueue<T>::Node* current = queue.head;
         while (current != nullptr) {
@@ -77,19 +79,43 @@ public:
 
 
 int main() {
-    mypriorityqueue<int> queue;
+    //int
+    std::cout << "int:" << std::endl;
+    mypriorityqueue<int> queue1;
 
-    queue.push(5, 1);
-    queue.push(2, 3);
-    queue.push(3, 2);
-    queue.push(1, 4);
+    queue1.push(5, 1);
+    queue1.push(2, 3);
+    queue1.push(3, 2);
+    queue1.push(1, 4);
 
-    std::cout << "Queue: " << queue << std::endl;
-    std::cout << "Size: " << queue.size() << std::endl;
+    std::cout << "Queue: " << queue1 << std::endl;
+    std::cout << "Size: " << queue1.size() << std::endl;
 
-    std::cout << "Peek: " << queue.peek() << std::endl;
-    queue.pop();
-    std::cout << "After pop: " << queue << std::endl;
+    std::cout << "Peek: " << queue1.peek() << std::endl;
+    std::cout << "After peek: " << queue1 << std::endl;
+
+    std::cout << "Pop: " << queue1.pop() << std::endl;
+    std::cout << "After pop: " << queue1 << std::endl;
+
+    std::cout << std::endl;
+
+    //char
+    std::cout << "char:" << std::endl;
+    mypriorityqueue<char> queue2;
+
+    queue2.push('A', 1);
+    queue2.push('C', 3);
+    queue2.push('B', 2);
+    queue2.push('D', 4);
+
+    std::cout << "Queue: " << queue2 << std::endl;
+    std::cout << "Size: " << queue2.size() << std::endl;
+
+    std::cout << "Peek: " << queue2.peek() << std::endl;
+    std::cout << "After peek: " << queue2 << std::endl;
+
+    std::cout << "Pop: " << queue2.pop() << std::endl;
+    std::cout << "After pop: " << queue2 << std::endl;
 
     return 0;
 }
